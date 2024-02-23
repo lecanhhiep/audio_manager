@@ -175,26 +175,26 @@ public class MediaPlayerService extends Service {
 //        Intent intent = new Intent("android.flutter.audio_manager.activity");
         Intent intent = new Intent(this, AudioManagerPlugin.class);
         PendingIntent contentPendingIntent = PendingIntent.getActivity(this, CONTENT_PENDING_REQUESTS, intent,
-                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT);
+                android.os.Build.VERSION.SDK_INT >= 31 ? PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT);
 
         // 自定义布局
         views = new RemoteViews(getPackageName(), R.layout.layout_mediaplayer);
         // 下一首
         Intent intentNext = new Intent(ACTION_NEXT);
         PendingIntent nextPendingIntent = PendingIntent.getBroadcast(this, NEXT_PENDING_REQUESTS, intentNext,
-                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
+                android.os.Build.VERSION.SDK_INT >= 31 ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_next, nextPendingIntent);
 
         // 暂停/播放
         Intent intentPlay = new Intent(ACTION_PLAY_OR_PAUSE);
         PendingIntent playPendingIntent = PendingIntent.getBroadcast(this, PLAY_PENDING_REQUESTS, intentPlay,
-                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
+                android.os.Build.VERSION.SDK_INT >= 31 ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_pause, playPendingIntent);
 
         // 停止
         Intent intentStop = new Intent(ACTION_STOP);
         PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, STOP_PENDING_REQUESTS, intentStop,
-                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
+                android.os.Build.VERSION.SDK_INT >= 31 ? PendingIntent.FLAG_IMMUTABLE :PendingIntent.FLAG_CANCEL_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_cancel, stopPendingIntent);
 
         builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
